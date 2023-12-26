@@ -1,4 +1,4 @@
-package Service;
+package com.vti.Kenzy.shop.Service;
 
 import com.vti.Kenzy.shop.Dto.CarDto;
 import com.vti.Kenzy.shop.Entity.Car;

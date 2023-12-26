@@ -5,15 +5,14 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "Car")
-public class Car
-{
+public class Car {
     @EmbeddedId
     private PrimaryKey pk;
 
@@ -27,7 +26,7 @@ public class Car
         private String licensePlate;
 
         @Column(name = "Repair_date", nullable = false)
-        private LocalDateTime repairDate;
+        private LocalDate repairDate;
     }
 
     @Column(name = "Customer_name", nullable = false, length = 100)

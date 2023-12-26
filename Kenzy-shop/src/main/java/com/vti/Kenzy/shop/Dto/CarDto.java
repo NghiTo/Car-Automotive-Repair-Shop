@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -19,7 +19,7 @@ public class CarDto
 
     @NotNull
     @PastOrPresent
-    private LocalDateTime repairDate;
+    private LocalDate repairDate;
 
     @NotBlank
     @Length(max = 50)

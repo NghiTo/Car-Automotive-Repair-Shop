@@ -1,4 +1,4 @@
-package Service;
+package com.vti.Kenzy.shop.Service;
 
 import com.vti.Kenzy.shop.Dto.CarDto;
 import com.vti.Kenzy.shop.Entity.Car;
@@ -9,7 +9,9 @@ import com.vti.Kenzy.shop.Repository.CarRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
+@Service
 @AllArgsConstructor
 public class CarServiceImpl implements CarService
 {
