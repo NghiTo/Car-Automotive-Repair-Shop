@@ -1,0 +1,36 @@
+const base_url = "http://localhost:8080"
+
+const formLicensePlate = document.getElementById("license plate")
+const formRepairDate = document.getElementById("repair date")
+const formName = document.getElementById("name")
+const formCatalog = document.getElementById("catalog")
+const formCarMaker = document.getElementById("car maker")
+const form = document.getElementById("car create form")
+
+form.addEventListener("submit", async function(e)
+{
+    e.preventDefault();
+    await create();
+    this.reset()
+})
+
+async function create()
+{
+    const response = await fetch(`${base_url}/api/v1/cars`, {
+        method: "POST",
+        headers: 
+        {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(
+        {
+            licensePlate: formLicensePlate.value, 
+            repairDate: formRepairDate.value,
+            customerName: formName.value,
+            catalogs: formCatalog.value,
+            carMaker: formCarMaker.value
+        })
+    })
+    const body = await response.json();
+    console.log(body);
+}

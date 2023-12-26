@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Validated
 @AllArgsConstructor
+@CrossOrigin("http://127.0.0.1:5500")
 public class CarController
 {
     private final CarService carService;
