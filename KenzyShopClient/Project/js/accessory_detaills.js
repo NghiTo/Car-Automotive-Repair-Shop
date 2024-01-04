@@ -14,7 +14,7 @@ const loading = document.getElementById("loading")
 form.addEventListener("submit", async function(e)
 {
     e.preventDefault();
-    await update();
+    await createOrUpdate();
     findAll()
     this.reset()
 })
@@ -92,22 +92,27 @@ async function showAllAccessories(accessories)
     }
 }
 
-async function update()
+async function createOrUpdate()
 {
-    const response = await fetch(`${base_url}/api/v1/cars`, 
+    const id = formId.value;
+    const url = id ? `${base_url}/api/v1/accessories/${id}` : `${base_url}/api/v1/accessories`
+    const method = id ? "PUT" : "POST"
+    const response = await fetch(url, 
     {
-        method: "PUT",
+        method: method,
         headers: 
         {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(
         {
+            id: formId.value,
             licensePlate: formLicensePlate.value, 
             repairDate: formRepairDate.value,
-            customerName: formName.value,
-            catalogs: formCatalog.value,
-            carMaker: formCarMaker.value
+            name: formName.value,
+            price: formPrice.value,
+            statusDamaged: formStatusDamaged.value,
+            repairStatus: formRepairStatus.value
         })
     })
     const body = await response.json();
