@@ -34,7 +34,13 @@ public class CarServiceImpl implements CarService
     @Override
     public CarDto update(CarUpdateForm form)
     {
-        return null;
+        var carPk = new Car.PrimaryKey();
+        carPk.setLicensePlate(form.getLicensePlate());
+        carPk.setRepairDate(form.getRepairDate());
+        var car = carRepository.findById(carPk).get();
+        CarMapper.map(form, car);
+        var savedCar = carRepository.save(car);
+        return CarMapper.map(savedCar);
     }
 
     @Override

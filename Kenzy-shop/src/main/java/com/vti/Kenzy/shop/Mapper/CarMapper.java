@@ -3,6 +3,7 @@ package com.vti.Kenzy.shop.Mapper;
 import com.vti.Kenzy.shop.Dto.CarDto;
 import com.vti.Kenzy.shop.Entity.Car;
 import com.vti.Kenzy.shop.Form.CarCreateForm;
+import com.vti.Kenzy.shop.Form.CarUpdateForm;
 
 public class CarMapper
 {
@@ -18,7 +19,6 @@ public class CarMapper
         car.setCarMaker(form.getCarMaker());
         return car;
     }
-
     public static CarDto map(Car car)
     {
         var dto = new CarDto();
@@ -29,5 +29,11 @@ public class CarMapper
         dto.setCatalogs(car.getCatalogs());
         dto.setCarMaker(car.getCarMaker());
         return dto;
+    }
+    public static void map(CarUpdateForm form, Car car)
+    {
+        car.setCustomerName(form.getCustomerName());
+        car.setCatalogs(form.getCatalogs());
+        car.setCarMaker(form.getCarMaker());
     }
 }

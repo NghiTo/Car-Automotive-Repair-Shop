@@ -1,6 +1,5 @@
-const base_url = "https://655b1c01ab37729791a89024.mockapi.io"
+const base_url = "http://localhost:8080"
 
-const formID = document.getElementById("id")
 const formLicensePlate = document.getElementById("license plate")
 const formRepairDate = document.getElementById("repair date")
 const formName = document.getElementById("name")
@@ -23,7 +22,7 @@ findAll();
 async function findAll()
 {
     showLoading();
-    const response = await fetch(`${base_url}/api/v1/Cars`, 
+    const response = await fetch(`${base_url}/api/v1/cars`, 
     {
         method: "GET",
         headers: 
@@ -33,7 +32,7 @@ async function findAll()
     })
     const body = await response.json()
     console.log(body);
-    showAllCars(body);
+    showAllCars(body.content);
     hideLoading();
 }
 
@@ -49,7 +48,7 @@ async function showAllCars(cars)
         row.insertCell().innerText = repairDate;
         const customerName = car.customerName;
         row.insertCell().innerText = customerName;
-        const catalog = car.catalog;
+        const catalog = car.catalogs;
         row.insertCell().innerText = catalog;
         const carMaker = car.carMaker;
         row.insertCell().innerText = carMaker;
@@ -72,7 +71,7 @@ async function showAllCars(cars)
             if(confirmed)
             {
                 showLoading();
-                await deleteById(car.id);
+                await deleteById(car.licensePlate, car.repairDate);
                 tbody.removeChild(row);
                 hideLoading();
             }
@@ -84,7 +83,7 @@ async function showAllCars(cars)
 async function update()
 {
     const id = formID.value
-    const response = await fetch(`${base_url}/api/v1/Cars/${id}`, {
+    const response = await fetch(`${base_url}/api/v1/cars/${id}`, {
         method: "PUT",
         headers: 
         {
@@ -103,18 +102,21 @@ async function update()
     console.log(body);
 }
 
-async function deleteById(id)
+async function deleteById(licensePlate, repairDate)
 {
-    const response = await fetch(`${base_url}/api/v1/Cars/${id}`, 
+    const response = await fetch(`${base_url}/api/v1/cars`, 
     {
         method: "DELETE",
         headers: 
         {
             "Content-Type": "application/json"
-        }
+        },
+        body: JSON.stringify(
+            {
+                licensePlate: licensePlate,
+                repairDate: repairDate
+            })
     })
-    const body = await response.json()
-    console.log(body);
 }
 
 function showLoading()
