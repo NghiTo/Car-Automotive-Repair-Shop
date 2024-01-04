@@ -56,11 +56,10 @@ async function showAllCars(cars)
         btn.innerText = "🖊️Edit"
         btn.addEventListener("click", function()
         {
-            formID.value = car.id
             formLicensePlate.value = car.licensePlate
             formRepairDate.value = car.repairDate
             formName.value = car.customerName
-            formCatalog.value = car.catalog
+            formCatalog.value = car.catalogs
             formCarMaker.value = car.carMaker
         })
         const btndl = document.createElement("button")
@@ -82,8 +81,8 @@ async function showAllCars(cars)
 
 async function update()
 {
-    const id = formID.value
-    const response = await fetch(`${base_url}/api/v1/cars/${id}`, {
+    const response = await fetch(`${base_url}/api/v1/cars`, 
+    {
         method: "PUT",
         headers: 
         {
@@ -94,7 +93,7 @@ async function update()
             licensePlate: formLicensePlate.value, 
             repairDate: formRepairDate.value,
             customerName: formName.value,
-            catalog: formCatalog.value,
+            catalogs: formCatalog.value,
             carMaker: formCarMaker.value
         })
     })
