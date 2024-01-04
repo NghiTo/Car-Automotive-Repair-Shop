@@ -17,7 +17,7 @@ public class Accessory
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Name", nullable = false, unique = true, length = 50)
+    @Column(name = "Name", nullable = false, length = 50)
     private String name;
 
     @Column(name = "Price", nullable = false)
